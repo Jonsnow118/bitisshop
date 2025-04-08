@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/cart.css">
+
+</head>
+
+<body>
+    <div id="header-container"></div>
+    <div class="cart-container">
+        <div class="cart-left">
+            <div class="cart-header" id="cart-count">Bạn đang có 0 sản phẩm trong giỏ hàng</div>
+
+            <div id="cart-items-container" class="cart-items"></div>
+
+            <!-- <div class="gift-section">
+                <h3>QUÀ TẶNG</h3>
+                <div class="gift-item">
+                    <img src="https://via.placeholder.com/50" alt="Quà tặng">
+                    <p>GIFT - Quà tặng bí mật <span style="color: #e60000;">x1</span></p>
+                </div>
+            </div> -->
+
+            <div class="cart-summary">
+                <p>Phí vận chuyển sẽ được tính ở trang thanh toán.</p>
+                <p>Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
+                <p class="total">Tổng tiền: <span id="total-price">0 VNĐ</span></p>
+                <button class="checkout-btn" onclick="proceedToCheckout()">
+                    ĐẶT HÀNG NGAY (Áp dụng cho Việt Nam)
+                </button>
+            </div>
+
+            <div class="export-invoice">
+                <a href="#">Xuất hóa đơn cho đơn hàng</a>
+            </div>
+        </div>
+
+        <div class="cart-right">
+            <div class="support-section">
+                <p>Để nhận tư vấn hoặc hỗ trợ khi phát sinh khó khăn trong lúc mua hàng, hãy liên hệ Biti's thông qua:
+                </p>
+                <p>Gọi <a href="tel:0966158666">0966.158.666</a> (cho Việt Nam)</p>
+                <p>Email tới địa chỉ <a href="mailto:chamsockhachhang@bitis.com.vn">chamsockhachhang@bitis.com.vn</a>
+                    (cho Việt Nam & quốc tế)</p>
+                <p>For further support, please contact us via:</p>
+                <p>Mobile phone: <a href="tel:0966158666">0966.158.666</a> (for Vietnam only)</p>
+                <p>Email <a href="mailto:chamsockhachhang@bitis.com.vn">chamsockhachhang@bitis.com.vn</a> (for Vietnam &
+                    worldwide order)</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer-container"></div>
+    <script src="/assets/js/link.js"></script>
+    <script src="/assets/js/cart.js"></script>
+</body>
+
+</html>

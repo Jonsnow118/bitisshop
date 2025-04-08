@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/productdetail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+    <div id="header-container"></div>
+
+    <div class="product-detail-container">
+        <div class="product-gallery">
+            <div class="thumbnail-images" id="thumbnailImages"></div>
+            <div class="main-image">
+                <img id="mainProductImage" src="" alt="Ảnh sản phẩm">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1 class="product-title" id="productTitle">Tên Sản Phẩm</h1>
+            <div class="product-price" id="productPrice">Giá: </div>
+
+            <div class="size-selector">
+                <h3>Chọn Size:</h3>
+                <div class="size-buttons" id="sizeButtons"></div>
+            </div>
+
+            <div class="color-selector">
+                <h3>Chọn Màu:</h3>
+                <div class="color-buttons" id="colorButtons"></div>
+            </div>
+
+            <div class="product-actions">
+                <button class="add-to-cart-btn bg-primary text-white py-2 px-4 rounded">
+                    <i class="fas fa-shopping-cart"></i> Thêm Vào Giỏ Hàng
+                </button>
+                <button class="add-to-favorite-btn">
+                    <i class="far fa-heart"></i> Yêu Thích
+                </button>
+            </div>
+
+            <div class="product-description">
+                <h3>Mô Tả Sản Phẩm:</h3>
+                <p id="productDescription">Chi tiết sản phẩm sẽ được hiển thị tại đây.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer-container"></div>
+    <script src="/assets/js/link.js"></script>
+    <script src="/assets/js/product-detail.js"></script>
+</body>
+
+</html>

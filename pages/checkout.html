@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        .checkout-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .checkout-left {
+            flex: 2;
+        }
+
+        .checkout-right {
+            flex: 1;
+        }
+
+        .checkout-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .form-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .order-summary {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-item img {
+            width: 60px;
+            margin-right: 15px;
+        }
+
+        .order-item-info {
+            flex-grow: 1;
+        }
+
+        .order-item-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .order-total {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .order-total p {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .order-total .total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e60000;
+        }
+
+        .confirm-btn {
+            background: #e60000;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .support-section {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background: #fff;
+            margin-top: 20px;
+        }
+
+        .support-section p {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .support-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .support-section a:hover {
+            text-decoration: underline;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-method input {
+            margin-right: 10px;
+        }
+
+        #qr-code {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #qr-code img {
+            max-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-container"></div>
+    <div class="checkout-container">
+        <div class="checkout-left">
+            <div class="checkout-header">Thông Tin Thanh Toán</div>
+            <div class="form-section">
+                <h3>Thông Tin Giao Hàng</h3>
+                <div class="form-group">
+                    <label for="fullName">Họ và Tên *</label>
+                    <input type="text" id="fullName" placeholder="Nhập họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số Điện Thoại *</label>
+                    <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa Chỉ Giao Hàng *</label>
+                    <textarea id="address" rows="3" placeholder="Nhập địa chỉ giao hàng" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email (Để nhận thông tin đơn hàng) *</label>
+                    <input type="email" id="email" placeholder="Nhập email" required>
+                </div>
+            </div>
+            <!-- <div class="form-section">
+                <h3>Phương Thức Thanh Toán</h3>
+                <div class="form-group">
+                    <div class="payment-method">
+                        <input type="radio" name="paymentMethod" value="bank_transfer" id="bank_transfer" checked>
+                        <label for="bank_transfer">Chuyển khoản ngân hàng</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" name="paymentMethod" value="qr_code" id="qr_code">
+                        <label for="qr_code">Thanh toán qua QR Code</label>
+                    </div>
+                    <div id="bank_select" style="display: block;">
+                        <label for="bank">Chọn ngân hàng:</label>
+                        <select id="bank" name="bank">
+                            <option value="vietcombank">Vietcombank</option>
+                            <option value="bidv">BIDV</option>
+                            <option value="techcombank">Techcombank</option>
+                            <option value="vietinbank">VietinBank</option>
+                        </select>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="checkout-right">
+            <div class="order-summary">
+                <h3>Tóm Tắt Đơn Hàng</h3>
+                <div id="order-items"></div>
+                <div class="order-total">
+                    <p><span>Tạm tính:</span> <span id="subtotal">0 VNĐ</span></p>
+                    <p><span>Phí vận chuyển:</span> <span id="shippingFee">30,000 VNĐ</span></p>
+                    <p class="total"><span>Tổng thanh toán:</span> <span id="total">0 VNĐ</span></p>
+                </div>
+                <form class="" method="post" target="_blank" enctype="application/x-www-form-urlencoded"
+                    action="/shop-ban-giay-bitis/main/thanhtoanmomo.php">
+                    <input type="submit" name="MOMO" value="Thanh toán MOMO QR code" class="m-btn btn-danger">
+                </form>
+            </div>
+            <div id="qr-code" style="display: none;">
+                <h3>Quét mã QR để thanh toán</h3>
+                <img id="qr-image" src="" alt="QR Code">
+            </div>
+            <div class="support-section">
+                <p>Để nhận tư vấn hoặc hỗ trợ khi phát sinh khó khăn trong lúc mua hàng, hãy liên hệ Biti's thông qua:
+                </p>
+                <p>Gọi <a href="tel:0966158666">0966.158.666</a> (cho Việt Nam)</p>
+                <p>Email tới địa chỉ <a href="mailto:chamsockhachhang@bitis.com.vn">chamsockhachhang@bitis.com.vn</a>
+                    (cho Việt Nam & quốc tế)</p>
+                <p>For further support, please contact us via:</p>
+                <p>Mobile phone: <a href="tel:0966158666">0966.158.666</a> (for Vietnam only)</p>
+                <p>Email <a href="mailto:chamsockhachhang@bitis.com.vn">chamsockhachhang@bitis.com.vn</a> (for Vietnam &
+                    worldwide order)</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer-container"></div>
+    <script src="/assets/js/link.js"></script>
+    <script>
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const orderItemsContainer = document.getElementById("order-items");
+            const subtotalElement = document.getElementById("subtotal");
+            const shippingFeeElement = document.getElementById("shippingFee");
+            const totalElement = document.getElementById("total");
+
+            orderItemsContainer.innerHTML = ""; // Xóa nội dung cũ
+
+            if (cart.length === 0) {
+                orderItemsContainer.innerHTML = '<p>Không có sản phẩm trong giỏ hàng.</p>';
+                subtotalElement.textContent = "0 VNĐ";
+                totalElement.textContent = "0 VNĐ";
+                return;
+            }
+
+            cart.forEach((item) => {
+                const orderItem = document.createElement("div");
+                orderItem.classList.add("order-item");
+
+                let imageSrc = item.image || "/assets/imgs/placeholder.jpg";
+                if (imageSrc && !imageSrc.startsWith("/")) {
+                    imageSrc = "/" + imageSrc;
+                }
+
+                orderItem.innerHTML = `
+                    <img src="${imageSrc}" alt="${item.name}" onerror="this.src='/assets/imgs/placeholder.jpg'; this.alt='Không thể tải ảnh';">
+                    <div class="order-item-info">
+                        <p><strong>${item.name}</strong></p>
+                        <p>Màu: ${item.color} | Size: ${item.size}</p>
+                        <p>Số lượng: ${item.quantity} | ${(item.price * item.quantity).toLocaleString("vi-VN")} đ</p>
+                    </div>
+                `;
+                orderItemsContainer.appendChild(orderItem);
+            });
+
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const shippingFee = 30000; // Phí vận chuyển cố định
+            const total = subtotal + shippingFee;
+
+            subtotalElement.textContent = `${subtotal.toLocaleString("vi-VN")} VNĐ`;
+            shippingFeeElement.textContent = `${shippingFee.toLocaleString("vi-VN")} VNĐ`;
+            totalElement.textContent = `${total.toLocaleString("vi-VN")} VNĐ`;
+        }
+
+        // Hiển thị/ẩn lựa chọn ngân hàng và QR Code
+        document.querySelectorAll('input[name="paymentMethod"]').forEach((input) => {
+            input.addEventListener('change', (event) => {
+                const bankSelect = document.getElementById('bank_select');
+                const qrCodeSection = document.getElementById('qr-code');
+                if (event.target.value === 'bank_transfer') {
+                    bankSelect.style.display = 'block';
+                    qrCodeSection.style.display = 'none';
+                } else {
+                    bankSelect.style.display = 'block'; // Vẫn cần chọn ngân hàng để tạo QR
+                    qrCodeSection.style.display = 'block';
+                }
+            });
+        });
+
+        async function confirmOrder() {
+            const fullName = document.getElementById("fullName").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+            const email = document.getElementById("email").value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const bank = document.getElementById("bank").value;
+
+            if (!fullName || !phone || !address || !email) {
+                alert("Vui lòng điền đầy đủ thông tin bắt buộc (Họ tên, Số điện thoại, Địa chỉ, Email).");
+                return;
+            }
+
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart.length === 0) {
+                alert("Giỏ hàng của bạn đang trống!");
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => -sum + item.price * item.quantity, 0);
+            const shippingFee = 30000;
+            const total = subtotal + shippingFee;
+
+            // Gửi yêu cầu đến backend PHP để xử lý thanh toán
+            const response = await fetch('/api/process-payment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fullName,
+                    phone,
+                    address,
+                    email,
+                    paymentMethod,
+                    bank,
+                    cart,
+                    subtotal,
+                    shippingFee,
+                    total,
+                }),
+            });
+
+            const data = await response.json();
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+
+            // Tạo orderId ngẫu nhiên
+            const orderId = 'ORDER_' + Date.now();
+
+            // Lưu đơn hàng với trạng thái "pending"
+            const order = {
+                orderId: orderId,
+                customer: { fullName, phone, address, email },
+                items: cart,
+                subtotal: subtotal,
+                shippingFee: shippingFee,
+                total: total,
+                paymentMethod: paymentMethod,
+                paymentStatus: 'pending',
+                date: new Date().toISOString(),
+            };
+
+            if (paymentMethod === 'bank_transfer') {
+                // Hiển thị thông tin chuyển khoản ngân hàng
+                alert(`Vui lòng chuyển khoản đến:\nNgân hàng: ${data.bankDetails.bankName}\nSố tài khoản: ${data.bankDetails.accountNumber}\nTên tài khoản: ${data.bankDetails.accountName}\nSố tiền: ${total.toLocaleString("vi-VN")} VNĐ\nNội dung: Thanh toán đơn hàng ${orderId}`);
+            } else if (paymentMethod === 'qr_code') {
+                // Hiển thị mã QR
+                const qrImage = document.getElementById('qr-image');
+                qrImage.src = data.qrCodeUrl;
+                document.getElementById('qr-code').style.display = 'block';
+                alert(`Vui lòng quét mã QR để thanh toán ${total.toLocaleString("vi-VN")} VNĐ.\nNội dung: Thanh toán đơn hàng ${orderId}`);
+            }
+
+            // Lưu đơn hàng vào localStorage
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(order);
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            // Xóa giỏ hàng
+            localStorage.removeItem("cart");
+
+            if (paymentMethod === 'bank_transfer') {
+                alert("Đơn hàng đã được ghi nhận. Vui lòng hoàn tất thanh toán để xác nhận đơn hàng.");
+                window.location.href = "/index.html";
+            }
+        }
+
+        // Load tóm tắt đơn hàng khi trang được tải
+        document.addEventListener("DOMContentLoaded", loadOrderSummary);
+    </script>
+</body>
+
+</html>

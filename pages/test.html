@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giày Thể Thao Nữ</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .product-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            gap: 20px;
+        }
+
+        .product-images {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .thumbnail-images {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-right: 10px;
+        }
+
+        .thumbnail-images img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail-images img:hover {
+            border: 2px solid orange;
+        }
+
+        .main-image {
+            flex-grow: 1;
+            max-height: 250px;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .price {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #ff5722;
+        }
+
+        .color-options img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .size-options button {
+            padding: 10px 15px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .size-options button:hover {
+            background-color: orange;
+            color: white;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buy-now,
+        .add-to-cart {
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .buy-now {
+            background-color: orange;
+            color: white;
+        }
+
+        .add-to-cart {
+            background-color: #ff5722;
+            color: white;
+        }
+
+        .buy-now:hover,
+        .add-to-cart:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="product-container">
+        <div class="product-images">
+            <div class="thumbnail-images">
+                <img src="thumb1.jpg" alt="Thumbnail 1">
+                <img src="thumb2.jpg" alt="Thumbnail 2">
+                <img src="thumb3.jpg" alt="Thumbnail 3">
+                <img src="thumb4.jpg" alt="Thumbnail 4">
+            </div>
+            <img src="main-image.jpg" alt="Giày thể thao nữ" class="main-image">
+        </div>
+        <div class="product-details">
+            <h1>Giày Thể Thao Nữ Biti’s Hunter Tennis</h1>
+            <p class="price">869,000 VNĐ</p>
+            <p class="status">Tình trạng: <span class="in-stock">Còn hàng (5)</span></p>
+            <div class="color-options">
+                <p>Màu:</p>
+                <img src="color1.jpg" alt="Màu 1">
+                <img src="color2.jpg" alt="Màu 2">
+            </div>
+            <div class="size-options">
+                <p>Chọn size:</p>
+                <button>36</button>
+                <button>37</button>
+                <button>38</button>
+                <button>39</button>
+            </div>
+            <div class="buttons">
+                <button class="buy-now">MUA NGAY</button>
+                <button class="add-to-cart">THÊM VÀO GIỎ</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

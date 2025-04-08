@@ -1,0 +1,202 @@
+.product-detail-container {
+  display: flex;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-gallery {
+  display: flex;
+  width: 50%;
+  padding-right: 30px;
+}
+
+.main-image {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.main-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.thumbnail-images {
+  margin-right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+}
+
+.thumbnail-images img {
+  width: 86px;
+  height: 82px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.thumbnail-images img:hover,
+.thumbnail-images img.active {
+  border-color: #007bff;
+}
+
+.product-info {
+  width: 50%;
+  padding-left: 30px;
+}
+
+.product-title {
+  margin-left: 0px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.product-price {
+  text-align: left;
+  font-size: 20px;
+  color: #ff3d00;
+  margin-bottom: 15px;
+}
+
+.product-actions {
+  text-align: left;
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.size-selector,
+.color-selector {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.size-buttons,
+.color-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.size-button,
+.color-button {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.color-button {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.color-selector {
+  margin: 20px 0;
+}
+.color-buttons {
+  display: flex;
+  gap: 10px;
+}
+.color-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.color-button span {
+  display: none; /* Ẩn tên màu trong nút, có thể hiển thị nếu cần */
+}
+.color-button.selected {
+  border: 2px solid #ff3d00;
+}
+/* Hiệu ứng hover */
+.color-button:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Thêm bóng */
+}
+.color-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.size-button:hover,
+.size-button.selected,
+.color-button:hover,
+.color-button.selected {
+  background: #ff3d00;
+  color: white;
+}
+
+.add-to-cart-btn {
+  background: #ff3d00;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background: #cc0000;
+}
+
+.product-description {
+  text-align: left;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.image-modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.image-modal-content {
+  animation: zoomIn 0.5s;
+}
