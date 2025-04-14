@@ -187,7 +187,7 @@
                     <input type="email" id="email" placeholder="Nhập email" required>
                 </div>
             </div>
-            <!-- <div class="form-section">
+            <div class="form-section">
                 <h3>Phương Thức Thanh Toán</h3>
                 <div class="form-group">
                     <div class="payment-method">
@@ -198,7 +198,11 @@
                         <input type="radio" name="paymentMethod" value="qr_code" id="qr_code">
                         <label for="qr_code">Thanh toán qua QR Code</label>
                     </div>
-                    <div id="bank_select" style="display: block;">
+                    <div class="payment-method">
+                        <input type="radio" name="paymentMethod" value="momo" id="momo">
+                        <label for="momo">Thanh toán qua MoMo</label>
+                    </div>
+                    <!-- <div id="bank_select" style="display: block;">
                         <label for="bank">Chọn ngân hàng:</label>
                         <select id="bank" name="bank">
                             <option value="vietcombank">Vietcombank</option>
@@ -206,9 +210,9 @@
                             <option value="techcombank">Techcombank</option>
                             <option value="vietinbank">VietinBank</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="checkout-right">
             <div class="order-summary">
@@ -219,9 +223,8 @@
                     <p><span>Phí vận chuyển:</span> <span id="shippingFee">30,000 VNĐ</span></p>
                     <p class="total"><span>Tổng thanh toán:</span> <span id="total">0 VNĐ</span></p>
                 </div>
-                <form class="" method="post" target="_blank" enctype="application/x-www-form-urlencoded"
-                    action="/shop-ban-giay-bitis/main/thanhtoanmomo.php">
-                    <input type="submit" name="MOMO" value="Thanh toán MOMO QR code" class="m-btn btn-danger">
+                <form id="payment-form" onsubmit="return confirmOrder(event);">
+                    <input type="submit" value="Thanh toán qua MoMo" class="m-btn btn-danger">
                 </form>
             </div>
             <div id="qr-code" style="display: none;">
@@ -304,55 +307,52 @@
             });
         });
 
-        async function confirmOrder() {
+        async function confirmOrder(event) {
+            event.preventDefault(); // Ngăn chặn gửi form mặc định
+
             const fullName = document.getElementById("fullName").value;
             const phone = document.getElementById("phone").value;
             const address = document.getElementById("address").value;
             const email = document.getElementById("email").value;
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const bank = document.getElementById("bank").value;
 
             if (!fullName || !phone || !address || !email) {
-                alert("Vui lòng điền đầy đủ thông tin bắt buộc (Họ tên, Số điện thoại, Địa chỉ, Email).");
+                alert("Vui lòng điền đầy đủ thông tin bắt buộc.");
                 return;
             }
 
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            if (cart.length === 0) {
-                alert("Giỏ hàng của bạn đang trống!");
-                return;
-            }
-
-            const subtotal = cart.reduce((sum, item) => -sum + item.price * item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
             const shippingFee = 30000;
             const total = subtotal + shippingFee;
 
-            // Gửi yêu cầu đến backend PHP để xử lý thanh toán
-            const response = await fetch('/api/process-payment.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fullName,
-                    phone,
-                    address,
-                    email,
-                    paymentMethod,
-                    bank,
-                    cart,
-                    subtotal,
-                    shippingFee,
-                    total,
-                }),
-            });
+            if (paymentMethod === 'momo') {
+                const response = await fetch('/bitisshop-main/thanh-toan-momo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        cart,
+                        total,
+                        fullName,
+                        phone,
+                        address,
+                        email
+                    }),
+                });
 
-            const data = await response.json();
-            if (data.error) {
-                alert(data.error);
-                return;
+                const data = await response.json();
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                // Hiển thị mã QR
+                const qrImage = document.getElementById('qr-image');
+                qrImage.src = data.qrCodeUrl; // Cập nhật đường dẫn mã QR từ phản hồi
+                document.getElementById('qr-code').style.display = 'block'; // Hiển thị phần mã QR
             }
-
             // Tạo orderId ngẫu nhiên
             const orderId = 'ORDER_' + Date.now();
 
